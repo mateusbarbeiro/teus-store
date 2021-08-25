@@ -1,5 +1,6 @@
 package com.teusstore.controller;
 
+import com.teusstore.repositories.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,11 +20,15 @@ public class FuncionarioController {
 	
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
-	
+
+	@Autowired
+	private CidadeRepository cidadeRepository;
+
 	@GetMapping("/administrativo/funcionarios/cadastrar")
 	public ModelAndView create(Funcionario funcionario) {
 		ModelAndView mv = new ModelAndView("administrativo/funcionarios/cadastro");
 		mv.addObject("funcionario", funcionario);
+		mv.addObject("listaCidades", cidadeRepository.findAll());
 		return mv;
 	}
 	
