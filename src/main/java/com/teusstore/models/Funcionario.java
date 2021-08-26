@@ -33,8 +33,8 @@ public class Funcionario implements Serializable {
 
 	private String cargo;
 
-//	@ManyToOne
-	private String cidade;
+	@ManyToOne
+	private Cidade cidade;
 
 	private String logradouro;
 
@@ -116,11 +116,11 @@ public class Funcionario implements Serializable {
 		this.cargo = cargo;
 	}
 
-	public String getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
 
