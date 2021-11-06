@@ -2,6 +2,7 @@ package com.teusstore.controller;
 
 import com.teusstore.repositories.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -44,6 +45,8 @@ public class FuncionarioController {
 		if (result.hasErrors()) {
 			return create(funcionario);
 		}
+
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
 		funcionarioRepository.saveAndFlush(funcionario);
 		return create(new Funcionario());
 	}

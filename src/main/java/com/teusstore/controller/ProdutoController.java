@@ -6,16 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Controller
 public class ProdutoController {
 
+	private static String imagesPath = "D:/Projects/Faculdade/web-workspace/Teus-Store-Images/";
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
@@ -34,11 +39,26 @@ public class ProdutoController {
 	}
 
 	@PostMapping("/administrativo/produtos/salvar")
-	public ModelAndView save(@Validated Produto produto, BindingResult result) {
+	public ModelAndView save(@Validated Produto produto, BindingResult result, @RequestParam("file")MultipartFile file) {
 		if (result.hasErrors()) {
 			return create(produto);
 		}
+
 		produtoRepository.saveAndFlush(produto);
+
+		try {
+			if(!file.isEmpty()) {
+				byte[] bytes = file.getBytes();
+				Path path = Paths.get(imagesPath + String.valueOf(produto.getId())+ file.getOriginalFilename());
+				Files.write(path, bytes);
+
+				produto.setNomeImagem(String.valueOf(produto.getId())+ file.getOriginalFilename());
+				produtoRepository.saveAndFlush(produto);
+			}
+		} catch	(IOException e) {
+			e.printStackTrace();
+		}
+
 		return create(new Produto());
 	}
 
@@ -53,5 +73,15 @@ public class ProdutoController {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		produtoRepository.delete(produto.get());
 		return get();
+	}
+
+	@GetMapping("/administrativo/produtos/mostraImagem/{image}")
+	@ResponseBody
+	public byte[] getImage(@PathVariable("image") String image) throws IOException {
+		File imageFile = new File(imagesPath + image);
+		if (imageFile != null || image.trim().length() > 0) {
+				return Files.readAllBytes(imageFile.toPath());
+		}
+		return null;
 	}
 }
