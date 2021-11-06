@@ -1,7 +1,6 @@
 package com.teusstore.controller;
 
 import com.teusstore.models.Permissao;
-import com.teusstore.models.Permissao;
 import com.teusstore.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
