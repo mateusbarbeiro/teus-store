@@ -1,6 +1,7 @@
 package com.teusstore.controller;
 
 import com.teusstore.models.Produto;
+import com.teusstore.repositories.CategoriaRepository;
 import com.teusstore.repositories.MarcaRepository;
 import com.teusstore.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,15 @@ public class ProdutoController {
 	private ProdutoRepository produtoRepository;
 	@Autowired
 	private MarcaRepository marcaRepository;
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 
 	@GetMapping("/administrativo/produtos/cadastrar")
 	public ModelAndView create(Produto produto) {
 		ModelAndView mv = new ModelAndView("administrativo/produtos/cadastro");
 		mv.addObject("produto", produto);
 		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
 		return mv;
 	}
 

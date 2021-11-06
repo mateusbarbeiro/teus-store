@@ -32,9 +32,12 @@
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="categoria">Categoria</label>
-						<input type="text" class="form-control" id="categoria" placeholder="Categoria"
-							   autofocus="autofocus" th:field="*{categoria}" value=""/>
+						<label>Categoria</label>
+						<select th:field="*{categoria}"
+								class="form-control">
+							<option th:each="cat: ${listaCategorias}"
+									th:value="${cat.id}" th:text="${cat.nome}"></option>
+						</select>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
