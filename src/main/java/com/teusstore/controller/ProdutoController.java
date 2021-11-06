@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -73,15 +72,5 @@ public class ProdutoController {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		produtoRepository.delete(produto.get());
 		return get();
-	}
-
-	@GetMapping("/administrativo/produtos/mostraImagem/{image}")
-	@ResponseBody
-	public byte[] getImage(@PathVariable("image") String image) throws IOException {
-		File imageFile = new File(imagesPath + image);
-		if (imageFile != null || image.trim().length() > 0) {
-				return Files.readAllBytes(imageFile.toPath());
-		}
-		return null;
 	}
 }
