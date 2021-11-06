@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "brand")
-public class Marca implements Serializable {
+@Table(name = "category")
+public class Categoria implements Serializable {
 
-    public Marca() {
+    public Categoria() {
         super();
     }
 
@@ -17,8 +17,6 @@ public class Marca implements Serializable {
     private Long id;
 
     private String nome;
-
-    private String cnpj;
 
     public Long getId() {
         return id;
@@ -34,13 +32,5 @@ public class Marca implements Serializable {
 
     public void setNome(String name) {
         this.nome = name;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 }

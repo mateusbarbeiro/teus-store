@@ -1,6 +1,7 @@
 package com.teusstore.controller;
 
 import com.teusstore.models.Produto;
+import com.teusstore.repositories.MarcaRepository;
 import com.teusstore.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +24,14 @@ public class ProdutoController {
 	private static String imagesPath = "D:/Projects/Faculdade/web-workspace/Teus-Store-Images/";
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	@Autowired
+	private MarcaRepository marcaRepository;
 
 	@GetMapping("/administrativo/produtos/cadastrar")
 	public ModelAndView create(Produto produto) {
 		ModelAndView mv = new ModelAndView("administrativo/produtos/cadastro");
 		mv.addObject("produto", produto);
+		mv.addObject("listaMarcas", marcaRepository.findAll());
 		return mv;
 	}
 

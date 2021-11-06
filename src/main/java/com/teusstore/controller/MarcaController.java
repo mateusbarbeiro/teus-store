@@ -1,9 +1,12 @@
 package com.teusstore.controller;
 
 import com.teusstore.models.Marca;
+import com.teusstore.models.Papel;
 import com.teusstore.repositories.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +23,15 @@ public class MarcaController {
 		ModelAndView mv = new ModelAndView("administrativo/marcas/cadastro");
 		mv.addObject("marca", marca);
 		return mv;
+	}
+
+	@PostMapping("/administrativo/marcas/salvar")
+	public ModelAndView save(@Validated Marca marca, BindingResult result) {
+		if (result.hasErrors()) {
+			return create(marca);
+		}
+		marcaRepository.saveAndFlush(marca);
+		return create(new Marca());
 	}
 
 	@GetMapping("/administrativo/marcas/listar")

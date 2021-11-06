@@ -22,7 +22,8 @@ public class Produto implements Serializable {
 
     private String categoria;
 
-    private  String marca;
+    @ManyToOne
+    private Marca marca;
 
     private  Double quantidadeEstoque = 0.;
 
@@ -68,11 +69,11 @@ public class Produto implements Serializable {
         this.categoria = categoria;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 
