@@ -2,6 +2,8 @@ package com.teusstore.controller;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import com.teusstore.repositories.CidadeRepository;
+import com.teusstore.service.EmailService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class FuncionarioController {
 
 	@Autowired
 	private CidadeRepository cidadeRepository;
+
+	@Autowired
+	private EmailService emailService;
 
 	private List<String> msg = new ArrayList<String>();
 
@@ -62,7 +67,21 @@ public class FuncionarioController {
 			return create(funcionario);
 		}
 
-		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+		if (funcionario.getId() == null) {
+			String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]}\\|;:\'\"<.>/?";
+			String pwd = RandomStringUtils.random( 10, characters );
+			funcionario.setSenha(new BCryptPasswordEncoder().encode(pwd));
+
+			boolean resultSendEmail = emailService.sendEmail(funcionario.getEmail(), "Credenciais de acesso do painel administrativo da loja online",
+					"Olá,"+ funcionario.getNome() +"\n\nPara acessar o painel adm, entre com: \nEmail: " + funcionario.getEmail() + "\nSenha: " + pwd +
+					"\n\nObrigado!");
+
+			if (!resultSendEmail) {
+				msg.add("Ocorreu um erro no envio do E-mail de credenciais!");
+				return create(funcionario);
+			}
+		}
+
 		funcionarioRepository.saveAndFlush(funcionario);
 		return create(new Funcionario());
 	}
