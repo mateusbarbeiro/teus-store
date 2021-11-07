@@ -23,6 +23,11 @@
 		</div>
 
 		<div class="container" id="cadastro">
+			<div th:each="m : ${msg}">
+				<div class="alert alert-danger" role="alert">
+					<span th:text="${m}"></span>
+				</div>
+			</div>
 			<form action="/administrativo/funcionarios/salvar" th:object="${funcionario}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
