@@ -2,7 +2,6 @@ package com.teusstore.controller;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import com.teusstore.repositories.CidadeRepository;
-import groovy.lang.GString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
