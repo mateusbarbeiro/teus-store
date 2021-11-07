@@ -68,7 +68,7 @@ public class FuncionarioController {
 		}
 
 		if (funcionario.getId() == null) {
-			String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]}\\|;:\'\"<.>/?";
+			String characters = "0123456789ABCDEFG";
 			String pwd = RandomStringUtils.random( 10, characters );
 			funcionario.setSenha(new BCryptPasswordEncoder().encode(pwd));
 
