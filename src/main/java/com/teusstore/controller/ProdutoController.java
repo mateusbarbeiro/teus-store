@@ -1,6 +1,8 @@
 package com.teusstore.controller;
 
+import com.teusstore.models.Categoria;
 import com.teusstore.models.ImagensProduto;
+import com.teusstore.models.Marca;
 import com.teusstore.models.Produto;
 import com.teusstore.repositories.CategoriaRepository;
 import com.teusstore.repositories.ImagensProdutoRepository;
@@ -46,6 +48,38 @@ public class ProdutoController {
 	public ModelAndView get() {
 		ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
 		mv.addObject("listaProdutos",  produtoRepository.findAll());
+		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
+
+		return mv;
+	}
+
+	@GetMapping("/administrativo/produtos/listar/descricao")
+	public ModelAndView getByDescription(String descricao) {
+		ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+		mv.addObject("listaProdutos",  produtoRepository.findAllByDescricaoContains(descricao));
+		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
+		return mv;
+	}
+
+	@GetMapping("/administrativo/produtos/listar/marca")
+	public ModelAndView getByBrand(Long marcaId) {
+		ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+		Marca marca = marcaRepository.getById(marcaId);
+		mv.addObject("listaProdutos",  produtoRepository.findAllByMarca(marca));
+		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
+		return mv;
+	}
+
+	@GetMapping("/administrativo/produtos/listar/categoria")
+	public ModelAndView getByCategory(Long categoriaId) {
+		ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+		Categoria categoria = categoriaRepository.getById(categoriaId);
+		mv.addObject("listaProdutos",  produtoRepository.findAllByCategoria(categoria));
+		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
 		return mv;
 	}
 
