@@ -125,4 +125,52 @@ public class ProdutoController {
 		produtoRepository.delete(produto.get());
 		return get();
 	}
+
+	@GetMapping("/administrativo/produtos/inlot50k")
+	public ModelAndView inLot50k() {
+		for(int i = 0; i < 50000; i++) {
+			Produto produto = new Produto();
+			produto.setDescricao("Product" + i);
+			produto.setValorVenda(i + 0.0);
+
+			produtoRepository.saveAndFlush(produto);
+		}
+		return new ModelAndView("administrativo/home");
+	}
+
+	@GetMapping("/administrativo/produtos/inlot100k")
+	public ModelAndView inLot100k() {
+		for(int i = 0; i < 100000; i++) {
+			Produto produto = new Produto();
+			produto.setDescricao("Product" + i);
+			produto.setValorVenda(i + 0.0);
+
+			produtoRepository.saveAndFlush(produto);
+		}
+		return new ModelAndView("administrativo/home");
+	}
+
+	@GetMapping("/administrativo/produtos/inlot150k")
+	public ModelAndView inLot150k() {
+		for(int i = 0; i < 150000; i++) {
+			Produto produto = new Produto();
+			produto.setDescricao("Product" + i);
+			produto.setValorVenda(i + 0.0);
+
+			produtoRepository.saveAndFlush(produto);
+		}
+		return new ModelAndView("administrativo/home");
+	}
+
+	@GetMapping("/administrativo/produtos/inlot200k")
+	public ModelAndView inLot200k() {
+		for(int i = 0; i < 200000; i++) {
+			Produto produto = new Produto();
+			produto.setDescricao("Product" + i);
+			produto.setValorVenda(i + 0.0);
+
+			produtoRepository.saveAndFlush(produto);
+		}
+		return new ModelAndView("administrativo/home");
+	}
 }

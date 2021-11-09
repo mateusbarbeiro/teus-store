@@ -34,14 +34,4 @@ public class ImagemController {
         }
         return null;
     }
-
-//    @GetMapping("/mostraImagem/{image}")
-//    @ResponseBody
-//    public byte[] getImage(@PathVariable("image") String image) throws IOException {
-//        File imageFile = new File(imagesPath + image);
-//        if (imageFile != null || image.trim().length() > 0) {
-//            return Files.readAllBytes(imageFile.toPath());
-//        }
-//        return null;
-//    }
 }
