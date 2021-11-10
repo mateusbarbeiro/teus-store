@@ -2,6 +2,8 @@ package com.teusstore.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -20,21 +22,24 @@ public class Produto implements Serializable {
 
     private double valorVenda;
 
-    private String categoria;
+    @OneToMany(targetEntity=ImagensProduto.class, mappedBy="produto",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ImagensProduto> imagens = new ArrayList<>();
 
-    private  String marca;
+    public List<ImagensProduto> getImagens() {
+        return imagens;
+    }
+    public void setImagens(List<ImagensProduto> imagens) {
+        this.imagens = imagens;
+    }
+
+
+    @ManyToOne
+    private Categoria categoria;
+
+    @ManyToOne
+    private Marca marca;
 
     private  Double quantidadeEstoque = 0.;
-
-    private String nomeImagem;
-
-    public String getNomeImagem() {
-        return nomeImagem;
-    }
-
-    public void setNomeImagem(String nomeImagem) {
-        this.nomeImagem = nomeImagem;
-    }
 
     public Long getId() {
         return id;
@@ -60,19 +65,19 @@ public class Produto implements Serializable {
         this.valorVenda = valorVenda;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 

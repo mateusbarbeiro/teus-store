@@ -20,6 +20,78 @@
 			</div>
 		</nav>
 		<div class="container">
+			<p>
+				<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseDescricao" aria-controls="collapseDescricao">Busca por Descricao</button>
+				<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseCategoria" aria-controls="collapseCategoria">Busca por Categoria</button>
+				<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseMarca" aria-controls="collapseMarca">Busca por Marca</button>
+				<button onclick="location.href = '/administrativo/produtos/listar';" id="myButton" class="btn btn-info" >Listar todos Produtos</button>
+			</p>
+
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseDescricao">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET"
+								  action="/administrativo/produtos/listar/descricao">
+								<input class="form-control mr-sm-2" type="search" placeholder="Digite a descricao" aria-label="Search" name="descricao" />
+								<button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+							</form>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseCategoria">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET"
+								  action="/administrativo/produtos/listar/categoria">
+								<select name="categoriaId"
+										class="form-control">
+									<option th:each="cat: ${listaCategorias}"
+											th:value="${cat.id}" th:text="${cat.nome}"></option>
+								</select>
+								<button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseMarca">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET"
+								  action="/administrativo/produtos/listar/marca">
+								<select name="marcaId"
+										class="form-control">
+									<option th:each="marca: ${listaMarcas}"
+											th:value="${marca.id}" th:text="${marca.nome}"></option>
+								</select>
+								<button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseProduto">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET"
+								  action="/administrativo/produtos/listar">
+								<button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+							</form>
+						</nav>
+					</div>
+				</div>
+			</div>
+
 			<div class="table-responsive">
 				<table class="table table-striped table-hover table-sm">
 					<thead>
@@ -38,7 +110,7 @@
 							<td th:text="${produto.descricao}"></td>
 							<td th:text="${produto.quantidadeEstoque}"></td>
 							<td th:text="${produto.valorVenda}"></td>
-							<td> <img th:src="@{/administrativo/produtos/mostraImagem/{image}(image=${produto.nomeImagem})}" width="100"/></td>
+							<td> <img th:src="@{/mostraImagem/{productid}(productid=${produto.id})}" width="100"/></td>
 
 							<td colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/administrativo/produtos/editar/{id}(id=${produto.id})}" role="button">

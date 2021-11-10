@@ -20,6 +20,8 @@ public class Funcionario implements Serializable {
 
 	private String nome;
 
+	private String cpf;
+
 	@Column(name = "salario_bruto")
 	private Double salarioBruto;
 
@@ -82,6 +84,14 @@ public class Funcionario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Double getSalarioBruto() {
