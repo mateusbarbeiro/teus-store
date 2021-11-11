@@ -4,12 +4,18 @@ import com.teusstore.models.Categoria;
 import com.teusstore.models.ImagensProduto;
 import com.teusstore.models.Marca;
 import com.teusstore.models.Produto;
+import com.teusstore.models.dtos.Paged;
+import com.teusstore.models.dtos.Paging;
 import com.teusstore.repositories.CategoriaRepository;
 import com.teusstore.repositories.ImagensProdutoRepository;
 import com.teusstore.repositories.MarcaRepository;
 import com.teusstore.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -126,6 +132,22 @@ public class ProdutoController {
 		produtoRepository.delete(produto.get());
 		return get();
 	}
+
+	@GetMapping("/administrativo/produtos/listar/paged")
+	public ModelAndView get(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+						@RequestParam(value = "size", required = false, defaultValue = "5") int size, Model model) {
+
+		ModelAndView mv = new ModelAndView("administrativo/produtos/listapaginada");
+
+		PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.by(Sort.Direction.ASC, "id"));
+		Page<Produto> postPage = produtoRepository.findAll(request);
+
+		mv.addObject("listaprodutos", new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size)));
+		mv.addObject("listaMarcas", marcaRepository.findAll());
+		mv.addObject("listaCategorias", categoriaRepository.findAll());
+		return mv;
+	}
+
 
 	@GetMapping("/administrativo/produtos/inlot50k")
 	public ModelAndView inLot50k() {

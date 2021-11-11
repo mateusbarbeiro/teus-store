@@ -32,6 +32,7 @@ public class ImagemController {
             }
             return null;
         }
-        return null;
+        File imageFile = new File(imagesPath + "semimg.jpg");
+        return Files.readAllBytes(imageFile.toPath());
     }
 }
