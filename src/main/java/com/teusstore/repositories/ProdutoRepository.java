@@ -1,18 +1,12 @@
 package com.teusstore.repositories;
 
-import com.teusstore.models.Categoria;
-import com.teusstore.models.Marca;
 import com.teusstore.models.Produto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
-    List<Produto> findAllByDescricaoContains(String descricao);
-
-    List<Produto> findAllByCategoria(Categoria categoria);
-
-    List<Produto> findAllByMarca(Marca marca);
-
-    List<Produto> findTopByOrderByIdAsc();
+    @Query(value = "SELECT p FROM Produto p INNER JOIN Marca m ON p.marca.id = m.id INNER JOIN Categoria c ON p.categoria.id = c.id WHERE LOWER(p.descricao) LIKE %?1% OR LOWER(m.nome) LIKE %?1%  OR LOWER(c.nome) LIKE %?1%")
+    Page<Produto> findAll(String filtro, Pageable pageable);
 }

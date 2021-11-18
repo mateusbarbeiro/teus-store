@@ -27,13 +27,13 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView("/login");
+		ModelAndView mv = new ModelAndView("auth/login");
 		return  mv;
 	}
 
 	@GetMapping("/resetpassword")
 	public ModelAndView resetpassword() {
-		ModelAndView mv = new ModelAndView("/reset-password");
+		ModelAndView mv = new ModelAndView("auth/reset-password");
 		mv.addObject("msg", msg);
 		msg = new ArrayList<String>();
 		return  mv;
@@ -48,7 +48,7 @@ public class LoginController {
 			return resetpassword();
 		}
 
-		String characters = "0123456789ABCDEFG";
+		String characters = "0123456789ABCDEFGhijklmnopqRSTUVWXYZ";
 		String pwd = RandomStringUtils.random( 10, characters );
 		funcionario.setSenha(new BCryptPasswordEncoder().encode(pwd));
 
