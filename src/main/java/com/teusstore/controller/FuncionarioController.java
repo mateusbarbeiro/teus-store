@@ -70,7 +70,8 @@ public class FuncionarioController {
 		if (funcionario.getId() == null) {
 			String characters = "0123456789ABCDEFG";
 			String pwd = RandomStringUtils.random( 10, characters );
-			funcionario.setSenha(new BCryptPasswordEncoder().encode(pwd));
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			funcionario.setSenha(encoder.encode(pwd));
 
 			boolean resultSendEmail = emailService.sendEmail(funcionario.getEmail(), "Credenciais de acesso do painel administrativo da loja online",
 					"Olá,"+ funcionario.getNome() +"\n\nPara acessar o painel adm, entre com: \nEmail: " + funcionario.getEmail() + "\nSenha: " + pwd +

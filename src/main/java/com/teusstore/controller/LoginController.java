@@ -50,7 +50,8 @@ public class LoginController {
 
 		String characters = "0123456789ABCDEFGhijklmnopqRSTUVWXYZ";
 		String pwd = RandomStringUtils.random( 10, characters );
-		funcionario.setSenha(new BCryptPasswordEncoder().encode(pwd));
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		funcionario.setSenha(encoder.encode(pwd));
 
 		boolean resultSendEmail = emailService.sendEmail(funcionario.getEmail(), "Novas credenciais de acesso do painel administrativo da loja online",
 				"Olá,"+ funcionario.getNome() +"\n\nPara acessar o painel adm, entre com: \nEmail: " + funcionario.getEmail() + "\nSenha: " + pwd +
@@ -59,6 +60,7 @@ public class LoginController {
 		if (!resultSendEmail) {
 			msg.add("Ocorreu um erro no envio do E-mail de credenciais!");
 		}
+		funcionarioRepository.saveAndFlush(funcionario);
 
 		return resetpassword();
 	}
