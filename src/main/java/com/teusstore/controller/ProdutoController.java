@@ -95,7 +95,7 @@ public class ProdutoController {
 
 	@GetMapping("/administrativo/produtos/listar/paged")
 	public ModelAndView get(@RequestParam(value = "filtro", required = false, defaultValue = "") String filtro, @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
-						@RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+						@RequestParam(value = "size", required = false, defaultValue = "5") int size) {
 
 		ModelAndView mv = new ModelAndView("administrativo/produtos/listapaginada");
 

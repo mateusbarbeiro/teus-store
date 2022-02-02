@@ -4,14 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Optional;
-
 @Controller
 public class NegadoController {
 
-	@GetMapping("/negado")
-	public ModelAndView deny() {
-		ModelAndView mv = new ModelAndView("/negado");
+	@GetMapping("/negadoAdministrativo")
+	public ModelAndView denyAdm() {
+		ModelAndView mv = new ModelAndView("negadoAdministrativo");
+		return  mv;
+	}
+
+	@GetMapping("/negadoCliente")
+	public ModelAndView denyClient() {
+		ModelAndView mv = new ModelAndView("negadoCliente");
 		return  mv;
 	}
 }
