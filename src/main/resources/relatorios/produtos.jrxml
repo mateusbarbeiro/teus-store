@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4a1d5eb-82dd-412f-a620-202e4bdf9dba">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="teus-store"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Transparent" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Transparent" forecolor="#B89F7D" backcolor="#70A9C6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Transparent" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tableDataset" uuid="f244a870-a095-441f-b5de-6a1618536948">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="teus-store"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<queryString>
+			<![CDATA[SELECT p.id, p.descricao, b.nome AS marca, c.nome AS categoria, p.quantidade_estoque, p.valor_venda
+FROM product p 
+INNER JOIN brand b
+ON p.marca_id = b.id
+INNER JOIN category c
+ON p.categoria_id = c.id
+ORDER BY p.id ASC]]>
+		</queryString>
+		<field name="id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="id"/>
+			<property name="com.jaspersoft.studio.field.label" value="id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+		</field>
+		<field name="descricao" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+			<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+		</field>
+		<field name="marca" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nome"/>
+			<property name="com.jaspersoft.studio.field.label" value="marca"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="brand"/>
+		</field>
+		<field name="categoria" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nome"/>
+			<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="category"/>
+		</field>
+		<field name="quantidade_estoque" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.name" value="quantidade_estoque"/>
+			<property name="com.jaspersoft.studio.field.label" value="quantidade_estoque"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+		</field>
+		<field name="valor_venda" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.name" value="valor_venda"/>
+			<property name="com.jaspersoft.studio.field.label" value="valor_venda"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT p.id, p.descricao, b.nome AS marca, c.nome AS categoria, p.quantidade_estoque, p.valor_venda
+FROM product p 
+INNER JOIN brand b
+ON p.marca_id = b.id
+INNER JOIN category c
+ON p.categoria_id = c.id
+ORDER BY p.id ASC]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="marca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="brand"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="category"/>
+	</field>
+	<field name="quantidade_estoque" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="quantidade_estoque"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantidade_estoque"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="valor_venda" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="valor_venda"/>
+		<property name="com.jaspersoft.studio.field.label" value="valor_venda"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="6321f5e3-86eb-444f-acc1-8daaaa0d6c60"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="9e48917a-7b59-4ffd-baad-725f45563194"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Produtos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="0a399baa-bad3-4b1a-9fe3-bb1c563e6a27"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Teus Store Reports]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21"/>
+	</pageHeader>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="fed27553-a6c4-4a8a-9056-2f6f2589a3e5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9f5ad531-d413-49c9-874b-8b99e8150fa6"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="fc593335-5cbf-4caf-97b3-ff897c676bde"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<componentElement>
+				<reportElement x="0" y="0" width="555" height="109" uuid="f7b6a592-1dfb-42ed-8db3-fe918b521c3b">
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tableDataset" uuid="9d0055d9-d574-466a-b188-002aee5ffa9e">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="40" uuid="1a20d25a-6ba8-410a-8ed7-03234b85723c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="be43527c-bdd8-40c2-ab36-93356484bed1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Id"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="cb896a28-0af7-46d3-940b-d0d92f88c81d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="7ea4c30e-7ade-4291-bc44-6c593adfc008">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="120" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="a985f6cb-52f9-4d4f-8aab-dfe388fdf69d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Descrição"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="20" uuid="960c9522-5275-4ae7-96c8-391fb9514a72"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e58c33e6-4002-48e4-b571-a96a27d04049">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="aeed8f4e-3629-4d9e-848a-0ca790a328a1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Marca"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="fc544dcd-8db3-455b-bd6f-da9cf98bd9ee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="47acb98b-b4f2-42f9-a0b3-382648697af5">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="140" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="7003a8b2-3f3e-4d9c-b8f8-cc3ff641ecc8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Categoria"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="20" uuid="4adf0368-9f9c-4430-9e60-4df129ab74da"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c696379c-8cda-400e-a5de-25ef76ffa238">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="049a620f-c5d0-4fe5-91ac-1f2afe9cf02c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Estoque"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="68cd61d8-23d3-4c27-987f-9e93a18caad7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{quantidade_estoque}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="9356bba7-4e28-4b00-a580-f79f394bafa2">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Transparent" x="0" y="0" width="75" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="a004f371-081e-4123-8f4f-bf0ed869171f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="19" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Valor"]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="75" height="20" uuid="121ab031-58db-4221-9f41-8f8131cc926b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{valor_venda}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

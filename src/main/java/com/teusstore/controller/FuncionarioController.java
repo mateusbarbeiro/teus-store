@@ -73,14 +73,14 @@ public class FuncionarioController {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			funcionario.setSenha(encoder.encode(pwd));
 
-			boolean resultSendEmail = emailService.sendEmail(funcionario.getEmail(), "Credenciais de acesso do painel administrativo da loja online",
-					"Olá,"+ funcionario.getNome() +"\n\nPara acessar o painel adm, entre com: \nEmail: " + funcionario.getEmail() + "\nSenha: " + pwd +
-					"\n\nObrigado!");
-
-			if (!resultSendEmail) {
-				msg.add("Ocorreu um erro no envio do E-mail de credenciais!");
-				return create(funcionario);
-			}
+//			boolean resultSendEmail = emailService.sendEmail(funcionario.getEmail(), "Credenciais de acesso do painel administrativo da loja online",
+//					"Olá,"+ funcionario.getNome() +"\n\nPara acessar o painel adm, entre com: \nEmail: " + funcionario.getEmail() + "\nSenha: " + pwd +
+//					"\n\nObrigado!");
+//
+//			if (!resultSendEmail) {
+//				msg.add("Ocorreu um erro no envio do E-mail de credenciais!");
+//				return create(funcionario);
+//			}
 		}
 
 		funcionarioRepository.saveAndFlush(funcionario);
