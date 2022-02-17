@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{cliente/fragments/layout}">
+<head>
+    <title>Carrinho de Compras</title>
+    <script>
+        function hide()  {
+            const tableContent = document.getElementById("tableContent");
+            if(tableContent !== null) {
+                document.getElementById("cont1").hidden = true;
+                document.getElementById("cont2").hidden = true;
+                document.getElementById("cont3").hidden = true;
+                document.getElementById("cont4").hidden = true;
+            }
+        }
+    </script>
+<!--    template https://bootsnipp.com/snippets/ZXKKD -->
+</head>
+<body th:onload="hide()">
+    <div class="container px-4 px-lg-5 mt-5" layout:fragment="corpo">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Disponível</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col" class="text-right">Valor Unitário</th>
+                            <th scope="col" class="text-right">Valor Total</th>
+                            <th> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div id="cont1">
+                            <tr id="cont2">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="cont3">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="cont4">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </div>
+                        <tr id="tableContent" th:each="item : ${listaItens}">
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>
+                                <span class="text-truncate" th:text="${item.produto.descricao}"></span>
+                            </td>
+                            <td>Em Estoque</td>
+                            <td><span th:text="${item.quantidade}"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-sm btn-success" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id}, acao=${1})}" role="button">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                &nbsp;&nbsp;
+                                <a class="btn btn-sm btn-success" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id}, acao=${0})}" role="button">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            </td>
+                            <td class="text-right" th:text="${item.valorUnitario}"></td>
+                            <td class="text-right" th:text="${item.valorTotal}"></td>
+                            <td class="text-right">
+                                <a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.id})}" role="button">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sub-Total</td>
+                            <td class="text-right">
+                                R$<span th:text="${compra.valorTotal}"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Frete</td>
+                            <td class="text-right">R$0.00</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <strong>
+                                    R$<span th:text="${compra.valorTotal}"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-sm-12  col-md-6">
+                        <a class="btn w-100 btn-light" th:href="@{/}" role="button">
+                            Continuar Comprando
+                        </a>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <a class="btn w-100 btn-success text-uppercase" th:href="finalizar" role="button">
+                            Finalizar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

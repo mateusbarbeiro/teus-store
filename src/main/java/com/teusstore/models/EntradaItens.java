@@ -2,7 +2,6 @@ package com.teusstore.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "product_input_itens")

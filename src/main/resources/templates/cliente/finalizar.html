@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{cliente/fragments/layout}">
+<head>
+    <title>Finalizar Compra</title>
+<!--    template https://bootsnipp.com/snippets/ZXKKD -->
+</head>
+<body>
+    <div class="container" layout:fragment="corpo">
+        <form action="/finalizar/confirmar" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <h3><span th:text="${cliente.nome}"></span></h3>
+                    <h3><span th:text="${cliente.email}"></span></h3>
+                </div>
+
+                <div class="col-6">
+                    <select class="form-control" name="formaPagamento">
+                        <option value="cartaoCredito">Cartão de Crédito</option>
+                        <option value="cartaoDebito">Cartão de Débito</option>
+                        <option value="boleto">Boleto</option>
+                        <option value="pix">Pix</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col"> </th>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Disponível</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col" class="text-right">Valor Unitário</th>
+                                <th scope="col" class="text-right">Valor Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${listaItens}">
+                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                <td>
+                                    <span class="text-truncate" th:text="${item.produto.descricao}"></span>
+                                </td>
+                                <td>Em Estoque</td>
+                                <td>
+                                    <span th:text="${item.quantidade}"></span>
+                                </td>
+                                <td class="text-right" th:text="${item.valorUnitario}"></td>
+                                <td class="text-right" th:text="${item.valorTotal}"></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Sub-Total</td>
+                                <td class="text-right">
+                                    R$<span th:text="${compra.valorTotal}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Frete</td>
+                                <td class="text-right">R$0,00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <strong>
+                                        R$<span th:text="${compra.valorTotal}"></span>
+                                    </strong>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col mb-2">
+                    <div class="row">
+                        <div class="col-sm-12  col-md-6">
+
+                        </div>
+                        <div class="col-sm-12 col-md-6 text-right">
+                            <button class="btn w-100 btn-success text-uppercase">
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>
